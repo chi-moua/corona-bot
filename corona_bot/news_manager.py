@@ -1,5 +1,5 @@
-import news_api as news
-from url_shortener import shorten_url
+import corona_bot.news_api as news
+from corona_bot.url_shortener import shorten_url
 
 def get_news() -> str:
     """Gets the updated news on the corona virus and returns the article titles and urls as a message."""
@@ -18,5 +18,3 @@ def format_message(titleUrlMap:dict()) -> str:
         message += title + '\n'
         message += url + '\n'
     return message
-
-get_news()
