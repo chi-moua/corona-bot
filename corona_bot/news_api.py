@@ -7,21 +7,24 @@ PAGE_SIZE = 5
 PAGE_NUM = 1
 
 ARTICLES = 'articles'
-URL = 'url'
+REQUEST_URL = 'http://newsapi.org/v2/everything?'
 TITLE = 'title'
+URL = 'url'
 
 def get_news(term="corona") -> dict:
     curDate = datetime.date(datetime.now())
-    url = ('http://newsapi.org/v2/everything?'
-       'q={}&'
-       'from={}&'
-       'sortBy=popularity&'
-       'pageSize={}&'
-       'page={}&'
-       'apiKey={}'.format(term, curDate, PAGE_SIZE, PAGE_NUM, API_KEY))
-    response = requests.get(url)
+    params = {
+        'q': term,
+        'from': curDate,
+        'sortBy':'popularity',
+        'pageSize': PAGE_SIZE,
+        'page': PAGE_NUM,
+        'apiKey': API_KEY
+    }
+    response = requests.get(REQUEST_URL, params=params)
     responseDict = response.json()
     titleUrlMapping = get_title_url_mapping(responseDict[ARTICLES])
+    print(titleUrlMapping)
     print(response.json())
     return titleUrlMapping
 

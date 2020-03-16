@@ -15,6 +15,6 @@ def format_message(titleUrlMap:dict()) -> str:
     """Given the mapping of the title to the url, returns a well formatted string of the information"""
     message = ''
     for title, url in titleUrlMap.items():
-        message += title + '\n'
+        message += '*' + title + '*\n'
         message += url + '\n'
     return message
